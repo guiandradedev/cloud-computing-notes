@@ -33,3 +33,7 @@ Resumo/Transcrição dos slides de aula da disciplina Computação em Nuvem
 @import "./aula-11-introducao-kubernetes.md"
 @import "./aula-12-redes-virtuais-sdn-nfc-fabric.md"
 @import "./aula-13-topicos-avancados-redes-datacenter.md"
+
+# Lista para P1
+
+@import "./lista-p1.md"
