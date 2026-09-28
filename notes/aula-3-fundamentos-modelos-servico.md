@@ -38,11 +38,11 @@ Aquele que **atua como intermediario, negociando e gerenciando a utilização de
 
 Aquele que **fornece a conectividade de rede necessária para que consumidorees possam acessar os serviços em nuvem**
 
-#### Limites Organizacionais
+#### Limites Organizacionais - _Organizational Boundary_
 
 Representa a fronteira física que circunda os recursos de TI de uma organização, delimitando quais recursos estão sobre sua propriedade e controle direto. Por exemplo contratar serviços de cloud e não querer que um funcionario específico do provedor controle seus serviços. Apesar de ser possível, o provedor pode negar, uma vez que não tem acesso direto ao limite organizacional do provedor.
 
-#### Limite de confiança
+#### Limite de confiança - _Trust Boundary_
 
 Fronteira lógica que se estende para incluir componentes do ambiente de nuvem nos quais a organização decide confiar, como serviços ou infraestruturas de terceiros.
 

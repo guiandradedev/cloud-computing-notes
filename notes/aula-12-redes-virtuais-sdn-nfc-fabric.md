@@ -1,5 +1,3 @@
-# Cloud
-
 ## Redes Virtuais, SDN, NFV e Fabric
 
 Redes em cloud precisa ser flexivel (múltiplos ambientes internos de forma transparente), com menor latência 
@@ -16,34 +14,40 @@ Redes em cloud precisa ser flexivel (múltiplos ambientes internos de forma tran
 - Escalabilidade: permitem o crescimento da infraestrutura de rede sem a necessidade de novos dispositivos físicos;
 - Flexibilidade: novas topologias sem reconfiguração física da rede;
 - Redução de custo: otimização de hardware;
-- Gerenciamento Simplificado:
+- Gerenciamento Simplificado: administração centralizada e automatizada.
 
 ### O que é SDN (Software Defined Network)
 
 - SDN é uma abordagem que permite centralizar e automatizar o controle e a configuração da rede.
 - Em vez de configurar individualmente cada switch e roteador, o administrador ou uma aplicaçao pode definir políticas, topologias e requisitos de conectividade de forma centralizada.
 - O controlador SDN traduz essas necessidades em configurações e regras que são aplicadas aos dispositivos da rede.
-- Os switches e roteadores continuam executando o encaminhamento de tráfego utilizando suas interfaces, tablelas, VLANs, rotas, t'úneis e demais recursos.
+- Os switches e roteadores continuam executando o encaminhamento de tráfego utilizando suas interfaces, tablelas, VLANs, rotas, túneis e demais recursos.
 
-[...] adicionar imagem 08h20. a ideia é fazer conexão entre os dois pontos de rede A->A2 sem atribuir roteamento dinamico, visto que ele aprenderia todas as rotas e afetaria comunicacao de redes externas.
-Com o SDN coloca a rota A1->A2 e ele gera as rotas diretamente com base na regra. No exemplo da imagem ele gera um roteamento estatico, mas poderia ser dinamico com instancia pra cada rede
+![Exemplo de SDN](../assets/exemplo-sdn.png)
+
+> A ideia é entender como fazer uma conexão entre dois pontos de rede A -> A' sem atribuir roteamento dinâmico, uma vez que nesse formato os roteadores aprenderiam todas as rotas e poderia afetar a segurança na comunicação de redes externas.
+> Através do SDN, insere a rota A -> A' e o sistema fica responsável por gerar as rotas diretamente com base na regra. No exemplo acima ele gera um roteamento estático, mas poderia ser dinâmico com instância para cada rede.
 
 ### Funcionamento do SDN
 
-[...] terminar de copiar slide
-- Visão centralizada: o controlador mantém uma visão lógica da topologia, dos dispositivos e das políticas da rede.
-- Abstração
-- Programação dos Dispositivos
-- Encaminhamento Distríbuido
+- **Visão centralizada**: o controlador mantém uma visão lógica da topologia, dos dispositivos e das políticas da rede;
+- **Abstração**: administração da rede como um todo no lugar de configurar cada equipamento individualmente;
+- **Programação dos Dispositivos**: o controlador usa APIs e protocolos para gerir configurações e regras nos switches e roteadores;
+- **Encaminhamento Distríbuido**: encaminhamento de pacotes localmente utilizando regras e tabelas configurados após programação.
 
-Protocolo NETCONF: configurações em XML com RPC (Remote Procedure Call)
+Exemplo: ao solicitar conectividade entre dois ambientes, o controlador pode identificar os equipamentos envolvidos e configurar automaticamente VLANs, VXLANs, interfaces, políticas ou rotas necessárias.
+
+> Protocolo NETCONF: configurações em XML com RPC (Remote Procedure Call)
 
 ### Três camadas/planos da arquitetura sdn
 
-[...] adicionar imagme e copiar slide
-- Camada da aplicação
+
+- **Camada da aplicação**: 
 - Plano de controle
 - Plano de dados
+
+![Exemplo de SDN](../assets/arquitetura-sdn.png)
+
 
 ### Vantagens do SDN
 
