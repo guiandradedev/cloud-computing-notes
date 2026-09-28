@@ -227,20 +227,61 @@ Ele funciona substituindo syscalls direcionadas ao hardware por hypercalls ao hy
 
 #### A questão da arquitetura de hardware
 
-[...]
+**Como a arquitetura de hardware afeta a virtualização**:
+- **Execução de código nativo** permite execução direta na CPU;
+- **Impacto de arquiteturas diferentes**: arquiteturas diferentes implicam em emulação, introduzindo sobrecarga de desempenho;
+- **Compatibilidade e emulação** ineficiente.
 
 #### Compatibilidade de Arquitetura na Virtualização
 
-[...]
+- Arquitetura de hardware: conjunto de instruções e design que define a capacidade de um processador.
+- Dependência de arquitetura em VMs: o guest OS deve ser compilado para a mesma arquitetura do hardware físico para evitar a necessidade de emulação de instruções
+
+Vantagens:
+- Desempenho elevado;
+- Menor overhead;
+- Execução direta no hardware.
+
+Limitações:
+- Redução de flexibilidade;
+- Restrições de compatibilidade entre SO e hardware.
 
 #### Tópicos que podem ser impactados pela arquitetura na virtualização
 
-[...]
+##### Independência de Hardware
+
+**Capacidade de mover VMs entre diferentes hosts físicos sem reconfiguração** obrigatória, facilitando a manutenção, atualizações e recuperação de desastres.
+A independência de hardware não compromete o isolamento entre VMs mesmo quando são migradas entre hosts.
+
+##### Server Consolidation
+
+Técnica de **executar múltiplas VMs em um único servidor físico** para maximizar a utilização de hardware, reduzindo custos com hardware e energia, garantindo isolamento pelo hypervisor.
 
 #### Funções Avançadas de Virtualização
 
-[...]
+##### Snapshots
 
+Captura **estado atual da VM**, incluindo estado da memória, discos virtuais e configurações he hardware. São utilizados para **criar ponto s de recuperação** antes de atualizações ou mudanças críticas, permitindo uma restauranção rápida ao estado anterior em caso de falhas e testes.
+
+##### vMotion
+
+Tecnologia que permite a **migração ao vivo de uma VM de um host físico para outro sem interrupção de serviço** transferindo o estado da memória e configurações da VM de um host para outro, mantendo a continuidade das operações, melhorando o balanceamento de carga e facilitando a manutenção.
+
+> A ideia de funcionamento é baseada na sincronização entre VMs de diferentes hosts. Inicialmente ocorre um processo de cópia de memória. Como a máquina continua executando, ao fim do processo de cópia, existe um passo de atualização de dados alterados, uma pausa breve da VM inicial e transferência de estado final para a nova VM. O ponto chave é que a nova VM terá a mesma configuração de rede, a infraestrutura só deve alterar em qual dispositivo físico o MAC Address está localizado.
+
+##### High Avaiability (HA)
+
+Configuração que permite o **reinício automático de VMs em outros hosts em caso de falha do hardware** através de DRS (Distributed Resource Scheduler), uma ferramenta de **balanceamento de carga de trabalho automática entre hosts em um cluster** para otimização de recursos. Proporcional tolerância a falhas completa para VMs críticas, criando uma réplica em tempo real em um segundo host.
+
+> A ideia aqui é uma detecção de falhas + reinicialização em outro host do cluster. Diferente do vMotion, não é uma migração ao vivo, logo não da pra copiar o estado atual da RAM gerando um periodo de indisponibilidade.
+
+> DRS → decide onde as VMs devem ficar para equilibrar recursos.
+> vMotion → é o mecanismo que move a VM ligada de um host para outro.
+> HA → reage quando um host falha, reiniciando suas VMs em outro host.
+> FT → mantém uma réplica da VM em execução simultaneamente em outro host.
 #### Desafios na Virtualização de Servidores
 
-[...]
+- **Compatibilidade de hardware**
+- **Segurança**
+- **Gerenciamento de recursos**
+- **Isolamento de desempenho**

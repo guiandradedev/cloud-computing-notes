@@ -157,7 +157,7 @@ Analise o incidente e explique:
 > Hypervisors tipo 1 possuem maior complexidade na instalação e gestão do SO, uma vez que são menos flexíveis e mais caros, tendo seus casos de uso especializados em ambientes produtivos. Diferente de hypervisors tipo 2 que são feitos para executar dentro de SOs convencionais, reduzindo a performance mas facilitando o uso.
 
 10. Durante uma manutenção programada, uma empresa precisa desligar um servidor físico sem interromper a máquina virtual que nele está executando. Explique qual recurso de virtualização pode ser utilizado e diferencie esse mecanismo de uma solução de High Availability, que atua diante da falha inesperada de um host.
-> Anotar sobre funções avançadas de virtualização que eu não vi
+> Para realizar tal migração os recursos que podem ser usados é uma combinação de snapshot para garantir recuperação do estado atual, da mesma forma a implementação de vMotion, que migra VMs entre diferentes hosts físicos. Diferente o HA, o vMotion é feito de forma planejada com o mínimo de indisponibilidade, enquanto o HA é feito para recuperação de falhas.
 
 11. Uma empresa possui três hosts físicos formando um ambiente virtualizado. Em determinado momento:
 
@@ -167,14 +167,25 @@ Analise o incidente e explique:
     - e existe risco de falha física de um dos servidores.
 
     Explique como conceitos como vMotion, DRS, High Availability e Fault Tolerance poderiam atuar nesse ambiente. Mostre claramente que esses mecanismos resolvem problemas diferentes e não são simplesmente quatro formas de fazer a mesma coisa.
+> Os conceitos são semelhantes mas não fazem a mesma coisa:
+> - vMotion: realizam migração entre hosts com VM em execução;
+> - HA: realizam migração entre hosts após falha, reiniciando a VM em um novo host;
+> - DRS: decide onde as VMs devem ficar para equilibrar recursos;
+> - FT: Proporciona redundância completa em VMs críticas, mantendo uma réplica em execução simultânea em outro host.
 
 12. Dois containers estão executando no mesmo host Linux. Um processo dentro do Container A consulta os processos em execução e não consegue visualizar normalmente os processos pertencentes ao Container B. Explique qual mecanismo do Linux contribui para esse isolamento e por que isso não significa que cada container possua seu próprio kernel.
+> O mecanismo utilizado é o namespaces do Linux, que cria um ambiente isolado dentro do kernel, impedindo que diferentes namespaces acessem o mesmo conteúdo isolado, como PID, filesystem, rede etc.
 
 13. Um servidor executa dois containers de processamento intensivo. O administrador deseja garantir que o Container A nunca utilize mais de 50% de uma CPU. Em outro cenário, ele deseja apenas que o Container B receba prioridade maior que o Container C quando ambos disputarem CPU. Explique por que `cpu.max` e `cpu.weight` atendem a objetivos diferentes.
+> `cpu.max` define o tempo proporcional que um grupo de processos pode executar na CPU, por exemplo rodar 500 em 1000 microsegundos, o equivalente a executar 500µs a cada período de 1000 µs, o equivalente a 50% da CPU. Por outro lado, `cpu.weight` define a prioridade relativa a concorrência da CPU, por exemplo se o GrupoA tem 1024, e o GrupoB 256, por proporção, o GrupoA tende a receber cerca de 4x mais tempo de CPU que o GrupoB enquanto ambos estiverem disputando o processador.
 
 14. Um administrador utiliza `cpuset.cpus` para permitir que determinado grupo execute apenas nas CPUs 0 e 1. Ele conclui que essas duas CPUs ficaram reservadas exclusivamente para esse grupo. Analise o raciocínio e explique por que CPU pinning não implica necessariamente exclusividade.
+> O raciocinio está errado, uma vez que CPU Pinning não implica em exclusividade, apenas indica que o processo não pode sair do range de processadores especificado. Para garantir exclusividade é necessário que remova o processador do escalonador durante a etapa de boot.
 
 15. Uma aplicação funciona corretamente no computador do desenvolvedor, mas falha quando instalada manualmente no ambiente de produção devido a diferenças de bibliotecas e dependências. Explique de que maneira o uso de imagem de container e Dockerfile pode reduzir esse tipo de problema e por que a imagem não deve ser confundida com o container em execução.
+> O uso de containers reduz diferenças entre ambientes porque a aplicação é empacotada em uma imagem junto com suas dependências, bibliotecas e configurações necessárias. O Dockerfile define de forma reproduzível como essa imagem deve ser construída, evitando instalações manuais diferentes entre máquinas.
+> Além disso, o container executa de forma isolada em relação ao sistema hospedeiro, diminuindo conflitos entre versões de bibliotecas e pacotes.
+> A imagem não deve ser confundida com o container: a imagem é um modelo imutável que contém os arquivos e configurações necessários para a aplicação, enquanto o container é uma instância em execução dessa imagem.
 
 16. Um servidor executa três aplicações conteinerizadas:
 
@@ -183,10 +194,14 @@ Analise o incidente e explique:
     - Aplicação C não pode ser afetada pelo comportamento das demais.
 
     Explique como namespaces e cgroups v2 atuariam em conjunto para isolar essas aplicações. Na resposta, diferencie explicitamente isolamento de visão do ambiente de controle de consumo de recursos e indique quais mecanismos poderiam ser aplicados a CPU e I/O.
+> Namespaces isolam a visão do ambiente entre aplicações, de forma que cada container tenha sua própria visao sobre PID, network, filesystem, etc. Já o cgroups define o quanto de recurso computacional cada container pode utilizar.
+> Para a Aplicação A, a solução é usar limitador de CPU como `cpu.max` ou `cpu.weight`. Para a Aplicação B limitador de I/O como `io.max` e `io.weight`. Para a Aplicação C o uso de namespaces para isolamento de visão acompanhado pela boa configuração de cgroups dos demais containeres.
 
 17. Um Deployment declara três réplicas de uma aplicação. Um dos Pods é encerrado inesperadamente e, algum tempo depois, outro Pod é criado automaticamente. Explique por que isso acontece utilizando os conceitos de estado desejado, estado atual e reconciliação.
+> O Kubernetes possui controladores que executam continuamente um processo de reconciliação, comparando o estado atual do cluster com o estado desejado declarado no Deployment. Ao detectar que existem apenas dois Pods quando deveriam existir três, o controlador solicita a criação de um novo Pod para restabelecer o estado desejado.
 
 18. Explique por que normalmente não é recomendável tratar um Pod como se fosse um servidor permanente. Mostre como Deployment e ReplicaSet modificam a maneira como devemos pensar a disponibilidade das aplicações no Kubernetes.
+> 
 
 19. Um novo Pod precisa ser criado no cluster. Explique, em termos conceituais, o papel do API Server, Scheduler e kubelet desde a declaração desse recurso até sua execução em um Worker Node. Não é necessário descrever comandos.
 
