@@ -2179,7 +2179,7 @@ Mapeamento de tag de vlan para um VNI. Todo cliente usa os mesmos nomes de VLAN 
 > De forma geral, a criação dessas tecnologias implicou na capacidade de redução de hardware físico, além da implementação de termos como escalabilidade e resiliência, oferecendo uma plataforma robusta para aplicações de grande escala.
 > Possuir esses cenários não implica em um ambiente de cloud uma vez que para ser considerado cloud é necessário implementar alguns conceitos específicos como escalabilidade, elasticidade, automação de processos, capacidade de configurar recursos sob demanda com o mínimo de integração com o provedor, etc.
 
-5. Uma empresa utiliza o **Microsoft 365 para e-mail corporativo** e, ao mesmo tempo, mantém **máquinas virtuais** em um provedor de nuvem para executar um **sistema desenvolvido internamente**. Identifique qual dos dois serviços se aproxima de SaaS e qual se aproxima de IaaS, explicando o raciocínio utilizado.
+6. Uma empresa utiliza o **Microsoft 365 para e-mail corporativo** e, ao mesmo tempo, mantém **máquinas virtuais** em um provedor de nuvem para executar um **sistema desenvolvido internamente**. Identifique qual dos dois serviços se aproxima de SaaS e qual se aproxima de IaaS, explicando o raciocínio utilizado.
 > O Microsoft 365 como e-mail se aproxima de um SaaS, uma vez que é um software quase totalmente gerenciado por parte da Microsoft, cabendo ao usuário somente configurações e personalizações no lado da aplicação.
 > O software desenvolvido internamente se aproxima de um IaaS, uma vez que o desenvolvedor precisa desenvolver o sistema internamente e lidar com a gestão interna da máquina virtual fornecida pelo provedor.
 
@@ -2259,12 +2259,13 @@ Analise o incidente e explique:
 > 3 - Responsabilidade do cliente, uma vez que tem senha fraca e sem controle de acesso.
 > 
 
-1.   Duas empresas utilizam a mesma quantidade de máquinas virtuais em cloud. A empresa A cria e administra os recursos manualmente, sem políticas comuns. A empresa B possui processos padronizados, governança e monitoramento do ambiente. Explique por que a quantidade de recursos em cloud não é suficiente para determinar a maturidade das duas organizações.
+21.   Duas empresas utilizam a mesma quantidade de máquinas virtuais em cloud. A empresa A cria e administra os recursos manualmente, sem políticas comuns. A empresa B possui processos padronizados, governança e monitoramento do ambiente. Explique por que a quantidade de recursos em cloud não é suficiente para determinar a maturidade das duas organizações.
+> Quantidade de recursos utilizados não implica na maturidade organizacional, mas sim na forma que os recursos são utilizados. A empresa A, apesar de possuir a mesma quantidade de recursos que a empresa B, os administra de forma manual e sem processos padronizados e governança, diferente da empresa B que já é um nível intemediário de maturidade.
 
-2.   Uma empresa possui diversos departamentos utilizando serviços de nuvem de forma independente. Alguns utilizam IaaS, outros SaaS e alguns criaram ambientes de desenvolvimento sem conhecimento da área central de TI. Explique quais características desse cenário indicam um estágio inicial de maturidade e quais mudanças seriam necessárias para que a organização avançasse para um uso mais repetível e coordenado.
+22.   Uma empresa possui diversos departamentos utilizando **serviços de nuvem de forma independente**. Alguns utilizam **IaaS, outros SaaS** e alguns criaram **ambientes de desenvolvimento sem conhecimento da área central de TI**. Explique quais características desse cenário indicam um estágio inicial de maturidade e quais mudanças seriam necessárias para que a organização avançasse para um uso mais repetível e coordenado.
+> O uso de forma independente sem conhecimento da área central do TI, sem acordos formais dificultam a governança e auditoria do uso, ausência de padrões e políticas centralizadas indicam uma represetação de estagio inicial. Para avançar no uso seria necessário estabelecer uma política centralizada de governança, criar padrÕes de provisionamento e segurança, etc.
 
-3.   **Estudo de caso:** Uma empresa apresenta as seguintes características:
-
+23. **Estudo de caso:** Uma empresa apresenta as seguintes características:
     - utiliza cloud em praticamente todos os seus sistemas;
     - possui políticas centralizadas de segurança e governança;
     - os processos de implantação são definidos e repetíveis;
@@ -2272,8 +2273,9 @@ Analise o incidente e explique:
     - porém métricas de custo, desempenho e eficiência ainda não são utilizadas sistematicamente para otimização.
 
     Com base no CMM apresentado em aula, indique em que região da escala de maturidade essa organização se encontra e justifique sua análise. Em seguida, explique quais mudanças seriam esperadas para que ela avançasse para o próximo nível.
+> Estaria próximo ao nível 3 e 4, uma vez que já possui uso de cloud de forma coerente com políticas e processos centralizados e repetíveis. No entanto, seu monitoramento não é otimizado, dificultando entender o comportamento de custos, desempenho e eficiência dos processos de forma clara para garantir otimização contínua.
 
-4.  **Estudo de caso:** Uma grande organização realizou uma avaliação CMM e encontrou o seguinte cenário:
+24. **Estudo de caso:** Uma grande organização realizou uma avaliação CMM e encontrou o seguinte cenário:
 
     - **Tecnologia:** alto nível de automação, IaC e CI/CD;
     - **Segurança:** políticas bem definidas e monitoramento contínuo;
@@ -2282,6 +2284,7 @@ Analise o incidente e explique:
     - **Processos:** algumas áreas seguem padrões corporativos, enquanto outras trabalham de forma independente.
 
     A diretoria concluiu que, como a tecnologia está avançada, a empresa deve ser classificada simplesmente como “nível 4”. Analise criticamente essa conclusão. Explique por que o CMM não deve ser interpretado apenas como uma nota única baseada na tecnologia e proponha como a organização deveria utilizar os resultados por domínio para construir um roadmap de evolução de maturidade.
+> O CMM possui notas individuais para cada domínio avaliado. No cenário acima, a nota está coerente para tecnologia e segurança. No entanto, nos dominios de finanças, pessoas e processos ainda tendem a melhorar, como por exemplo melhoria em FinOps, equilibrio de conhecimento através de programas de capacitação e implementação de processos internos.
 
 ### Bases Tecnológicas
 
@@ -2301,7 +2304,7 @@ Analise o incidente e explique:
 > A simples duplicação de componentes não garante alta disponibilidade quando os componentes redundantes compartilham a mesma dependência. No caso das fontes, ambas estão conectadas ao mesmo circuito elétrico; portanto, uma falha nesse circuito pode derrubar as duas simultaneamente. Da mesma forma, dois links de rede que utilizam o mesmo caminho físico de fibras continuam sujeitos ao mesmo ponto de falha, como o rompimento de um duto ou cabo.
 > Assim, para eliminar pontos únicos de falha, a redundância deve ocorrer também nas dependências: circuitos elétricos independentes, caminhos físicos distintos e, quando possível, operadoras diferentes. O objetivo não é apenas duplicar componentes, mas garantir que uma única falha não consiga interromper todo o serviço.
 
-6. Uma empresa pretende construir um pequeno datacenter para hospedar serviços críticos. Ela precisa definir conectividade, gerenciamento remoto, organização física e mecanismos de redundância. Proponha uma arquitetura conceitual para esse ambiente e justifique como pelo menos quatro elementos — por exemplo, múltiplos links, caminhos de cabeamento, alimentação elétrica, KVM/RSA/HMC, refrigeração ou monitoramento — contribuem para disponibilidade e operação do datacenter.
+5. Uma empresa pretende construir um pequeno datacenter para hospedar serviços críticos. Ela precisa definir conectividade, gerenciamento remoto, organização física e mecanismos de redundância. Proponha uma arquitetura conceitual para esse ambiente e justifique como pelo menos quatro elementos — por exemplo, múltiplos links, caminhos de cabeamento, alimentação elétrica, KVM/RSA/HMC, refrigeração ou monitoramento — contribuem para disponibilidade e operação do datacenter.
 > Alguns dos pontos essenciais para um datacenter de qualquer porte:
 > - **Redundância dos serviços com múltiplos provedores**, seja em internet, energia, backups etc;
 > - Controle de acesso com biometrica e cartão de acesso, garantindo autenticação e autorização 
@@ -2309,19 +2312,19 @@ Analise o incidente e explique:
 > - Sistemas de automação e monitoramento do ambiente;
 > - Sistema de resfriamento eficiênte e sustentavel, reduzindo consumo de água;
 
-7. Um servidor físico possui capacidade suficiente para executar quatro sistemas diferentes. Em vez de instalar todos os aplicativos no mesmo sistema operacional, a empresa decide criar quatro máquinas virtuais. Explique qual papel o hypervisor desempenha nesse cenário e qual vantagem de isolamento é obtida em relação à execução de todas as aplicações diretamente no mesmo sistema operacional.
+6. Um servidor físico possui capacidade suficiente para executar quatro sistemas diferentes. Em vez de instalar todos os aplicativos no mesmo sistema operacional, a empresa decide criar quatro máquinas virtuais. Explique qual papel o hypervisor desempenha nesse cenário e qual vantagem de isolamento é obtida em relação à execução de todas as aplicações diretamente no mesmo sistema operacional.
 > O papel do hypervisor é criar uma abstração entre o hardware e SOs virtuais, permitindo que múltiplos SOs usem o mesmo hardware físico de forma gerenciavel. A principal vantagem de seu uso em relação a execução no mesmo sistema operacional é o isolamento, uma vez que seus pacotes e bibliotecas podem ser concorrentes em relação as demais aplicações, garantir a segurança da aplicação e garantia de replicação em diferentes ambientes.
 
-8. Um aluno afirma que “uma VM é basicamente um container mais pesado”. Analise essa afirmação. Explique a principal diferença arquitetural entre os dois modelos considerando o papel do sistema operacional e do kernel.
+7. Um aluno afirma que “uma VM é basicamente um container mais pesado”. Analise essa afirmação. Explique a principal diferença arquitetural entre os dois modelos considerando o papel do sistema operacional e do kernel.
 > A principal diferença entre uma VM e um container é que a VM instância um SO próprio, enquanto o container compartilha o kernel da máquina host, consequentemente consumindo menos recursos.
 
-9.  Uma empresa pretende utilizar VirtualBox em notebooks para treinamento e ESXi em servidores de produção. Explique por que essa escolha faz sentido considerando as diferenças entre hypervisors tipo 1 e tipo 2, sem limitar sua resposta apenas à facilidade de instalação.
+8.  Uma empresa pretende utilizar VirtualBox em notebooks para treinamento e ESXi em servidores de produção. Explique por que essa escolha faz sentido considerando as diferenças entre hypervisors tipo 1 e tipo 2, sem limitar sua resposta apenas à facilidade de instalação.
 > Hypervisors tipo 1 possuem maior complexidade na instalação e gestão do SO, uma vez que são menos flexíveis e mais caros, tendo seus casos de uso especializados em ambientes produtivos. Diferente de hypervisors tipo 2 que são feitos para executar dentro de SOs convencionais, reduzindo a performance mas facilitando o uso.
 
-10. Durante uma manutenção programada, uma empresa precisa desligar um servidor físico sem interromper a máquina virtual que nele está executando. Explique qual recurso de virtualização pode ser utilizado e diferencie esse mecanismo de uma solução de High Availability, que atua diante da falha inesperada de um host.
-> Para realizar tal migração os recursos que podem ser usados é uma combinação de snapshot para garantir recuperação do estado atual, da mesma forma a implementação de vMotion, que migra VMs entre diferentes hosts físicos. Diferente o HA, o vMotion é feito de forma planejada com o mínimo de indisponibilidade, enquanto o HA é feito para recuperação de falhas.
+9. Durante uma manutenção programada, uma empresa precisa desligar um servidor físico sem interromper a máquina virtual que nele está executando. Explique qual recurso de virtualização pode ser utilizado e diferencie esse mecanismo de uma solução de High Availability, que atua diante da falha inesperada de um host.
+> Para realizar tal migração os recursos que podem ser usados é uma combinação de snapshot para garantir recuperação do estado atual, da mesma forma a implementação de vMotion, que migra VMs entre diferentes hosts físicos. Diferente do HA, o vMotion é feito de forma planejada com o mínimo de indisponibilidade, enquanto o HA é feito para recuperação de falhas.
 
-11. Uma empresa possui três hosts físicos formando um ambiente virtualizado. Em determinado momento:
+10. Uma empresa possui três hosts físicos formando um ambiente virtualizado. Em determinado momento:
 
     - um host apresenta utilização de CPU muito elevada;
     - outro possui grande quantidade de capacidade ociosa;
@@ -2335,21 +2338,21 @@ Analise o incidente e explique:
 > - DRS: decide onde as VMs devem ficar para equilibrar recursos;
 > - FT: Proporciona redundância completa em VMs críticas, mantendo uma réplica em execução simultânea em outro host.
 
-12. Dois containers estão executando no mesmo host Linux. Um processo dentro do Container A consulta os processos em execução e não consegue visualizar normalmente os processos pertencentes ao Container B. Explique qual mecanismo do Linux contribui para esse isolamento e por que isso não significa que cada container possua seu próprio kernel.
+11. Dois containers estão executando no mesmo host Linux. Um processo dentro do Container A consulta os processos em execução e não consegue visualizar normalmente os processos pertencentes ao Container B. Explique qual mecanismo do Linux contribui para esse isolamento e por que isso não significa que cada container possua seu próprio kernel.
 > O mecanismo utilizado é o namespaces do Linux, que cria um ambiente isolado dentro do kernel, impedindo que diferentes namespaces acessem o mesmo conteúdo isolado, como PID, filesystem, rede etc.
 
-13. Um servidor executa dois containers de processamento intensivo. O administrador deseja garantir que o Container A nunca utilize mais de 50% de uma CPU. Em outro cenário, ele deseja apenas que o Container B receba prioridade maior que o Container C quando ambos disputarem CPU. Explique por que `cpu.max` e `cpu.weight` atendem a objetivos diferentes.
+12. Um servidor executa dois containers de processamento intensivo. O administrador deseja garantir que o Container A nunca utilize mais de 50% de uma CPU. Em outro cenário, ele deseja apenas que o Container B receba prioridade maior que o Container C quando ambos disputarem CPU. Explique por que `cpu.max` e `cpu.weight` atendem a objetivos diferentes.
 > `cpu.max` define o tempo proporcional que um grupo de processos pode executar na CPU, por exemplo rodar 500 em 1000 microsegundos, o equivalente a executar 500µs a cada período de 1000 µs, o equivalente a 50% da CPU. Por outro lado, `cpu.weight` define a prioridade relativa a concorrência da CPU, por exemplo se o GrupoA tem 1024, e o GrupoB 256, por proporção, o GrupoA tende a receber cerca de 4x mais tempo de CPU que o GrupoB enquanto ambos estiverem disputando o processador.
 
-14. Um administrador utiliza `cpuset.cpus` para permitir que determinado grupo execute apenas nas CPUs 0 e 1. Ele conclui que essas duas CPUs ficaram reservadas exclusivamente para esse grupo. Analise o raciocínio e explique por que CPU pinning não implica necessariamente exclusividade.
+13. Um administrador utiliza `cpuset.cpus` para permitir que determinado grupo execute apenas nas CPUs 0 e 1. Ele conclui que essas duas CPUs ficaram reservadas exclusivamente para esse grupo. Analise o raciocínio e explique por que CPU pinning não implica necessariamente exclusividade.
 > O raciocinio está errado, uma vez que CPU Pinning não implica em exclusividade, apenas indica que o processo não pode sair do range de processadores especificado. Para garantir exclusividade é necessário que remova o processador do escalonador durante a etapa de boot.
 
-15. Uma aplicação funciona corretamente no computador do desenvolvedor, mas falha quando instalada manualmente no ambiente de produção devido a diferenças de bibliotecas e dependências. Explique de que maneira o uso de imagem de container e Dockerfile pode reduzir esse tipo de problema e por que a imagem não deve ser confundida com o container em execução.
+14. Uma aplicação funciona corretamente no computador do desenvolvedor, mas falha quando instalada manualmente no ambiente de produção devido a diferenças de bibliotecas e dependências. Explique de que maneira o uso de imagem de container e Dockerfile pode reduzir esse tipo de problema e por que a imagem não deve ser confundida com o container em execução.
 > O uso de containers reduz diferenças entre ambientes porque a aplicação é empacotada em uma imagem junto com suas dependências, bibliotecas e configurações necessárias. O Dockerfile define de forma reproduzível como essa imagem deve ser construída, evitando instalações manuais diferentes entre máquinas.
 > Além disso, o container executa de forma isolada em relação ao sistema hospedeiro, diminuindo conflitos entre versões de bibliotecas e pacotes.
 > A imagem não deve ser confundida com o container: a imagem é um modelo imutável que contém os arquivos e configurações necessários para a aplicação, enquanto o container é uma instância em execução dessa imagem.
 
-16. Um servidor executa três aplicações conteinerizadas:
+15. Um servidor executa três aplicações conteinerizadas:
 
     - Aplicação A possui alto consumo de CPU;
     - Aplicação B realiza grande quantidade de operações de disco;
@@ -2359,18 +2362,18 @@ Analise o incidente e explique:
 > Namespaces isolam a visão do ambiente entre aplicações, de forma que cada container tenha sua própria visao sobre PID, network, filesystem, etc. Já o cgroups define o quanto de recurso computacional cada container pode utilizar.
 > Para a Aplicação A, a solução é usar limitador de CPU como `cpu.max` ou `cpu.weight`. Para a Aplicação B limitador de I/O como `io.max` e `io.weight`. Para a Aplicação C o uso de namespaces para isolamento de visão acompanhado pela boa configuração de cgroups dos demais containeres.
 
-17. Um Deployment declara três réplicas de uma aplicação. Um dos Pods é encerrado inesperadamente e, algum tempo depois, outro Pod é criado automaticamente. Explique por que isso acontece utilizando os conceitos de estado desejado, estado atual e reconciliação.
+16. Um Deployment declara três réplicas de uma aplicação. Um dos Pods é encerrado inesperadamente e, algum tempo depois, outro Pod é criado automaticamente. Explique por que isso acontece utilizando os conceitos de estado desejado, estado atual e reconciliação.
 > O Kubernetes possui controladores que executam continuamente um processo de reconciliação, comparando o estado atual do cluster com o estado desejado declarado no Deployment. Ao detectar que existem apenas dois Pods quando deveriam existir três, o controlador solicita a criação de um novo Pod para restabelecer o estado desejado.
 
-18. Explique por que normalmente não é recomendável tratar um Pod como se fosse um servidor permanente. Mostre como Deployment e ReplicaSet modificam a maneira como devemos pensar a disponibilidade das aplicações no Kubernetes.
+17. Explique por que normalmente não é recomendável tratar um Pod como se fosse um servidor permanente. Mostre como Deployment e ReplicaSet modificam a maneira como devemos pensar a disponibilidade das aplicações no Kubernetes.
 > 
 
-19. Um novo Pod precisa ser criado no cluster. Explique, em termos conceituais, o papel do API Server, Scheduler e kubelet desde a declaração desse recurso até sua execução em um Worker Node. Não é necessário descrever comandos.
+18. Um novo Pod precisa ser criado no cluster. Explique, em termos conceituais, o papel do API Server, Scheduler e kubelet desde a declaração desse recurso até sua execução em um Worker Node. Não é necessário descrever comandos.
 
-20. Uma aplicação possui três Pods que podem ser destruídos e recriados, recebendo novos endereços IP. Ainda assim, os clientes internos precisam acessar a aplicação por um endereço estável. Explique qual problema o objeto Service resolve e por que acessar diretamente o IP de um Pod seria uma solução inadequada.
+19. Uma aplicação possui três Pods que podem ser destruídos e recriados, recebendo novos endereços IP. Ainda assim, os clientes internos precisam acessar a aplicação por um endereço estável. Explique qual problema o objeto Service resolve e por que acessar diretamente o IP de um Pod seria uma solução inadequada.
 > 
 
-21. Uma aplicação web em Kubernetes possui múltiplas réplicas e precisa:
+20. Uma aplicação web em Kubernetes possui múltiplas réplicas e precisa:
 
     - manter três instâncias em funcionamento;
     - substituir automaticamente instâncias que falharem;
@@ -2381,25 +2384,25 @@ Analise o incidente e explique:
 
     Identifique os principais objetos Kubernetes que participariam dessa solução e explique a função de cada um. Sua resposta deve mostrar como Deployment/ReplicaSet, Service, ConfigMap, Secret e mecanismos de persistência se complementam.
 
-22. Duas máquinas virtuais estão conectadas a uma rede lógica que existe sobre a mesma infraestrutura física utilizada por várias outras redes. Explique por que essa rede pode ser chamada de rede virtual mesmo continuando dependente de switches, cabos e interfaces físicas.
+21. Duas máquinas virtuais estão conectadas a uma rede lógica que existe sobre a mesma infraestrutura física utilizada por várias outras redes. Explique por que essa rede pode ser chamada de rede virtual mesmo continuando dependente de switches, cabos e interfaces físicas.
 
-23. Um administrador precisa criar conectividade entre duas redes. Em uma rede tradicional, ele configuraria manualmente diversos switches e roteadores. Em um ambiente SDN, ele informa ao controlador a conectividade desejada. Explique o que muda na forma de administrar a rede e o que não muda no encaminhamento efetivo dos pacotes.
+22. Um administrador precisa criar conectividade entre duas redes. Em uma rede tradicional, ele configuraria manualmente diversos switches e roteadores. Em um ambiente SDN, ele informa ao controlador a conectividade desejada. Explique o que muda na forma de administrar a rede e o que não muda no encaminhamento efetivo dos pacotes.
 
-24. Explique a relação entre Application Plane, Control Plane e Data Plane em SDN utilizando o seguinte exemplo: uma aplicação solicita que a rede `10.1.0.0/16` possa comunicar-se com a rede `10.2.0.0/16`. Mostre como a intenção percorre as três camadas até resultar em encaminhamento de tráfego.
+23. Explique a relação entre Application Plane, Control Plane e Data Plane em SDN utilizando o seguinte exemplo: uma aplicação solicita que a rede `10.1.0.0/16` possa comunicar-se com a rede `10.2.0.0/16`. Mostre como a intenção percorre as três camadas até resultar em encaminhamento de tráfego.
 
-25. Um aluno afirma que “como SDN centraliza o controle da rede, todos os pacotes precisam passar pelo controlador SDN”. Analise a afirmação e explique a diferença entre controle logicamente centralizado e encaminhamento distribuído.
+24. Um aluno afirma que “como SDN centraliza o controle da rede, todos os pacotes precisam passar pelo controlador SDN”. Analise a afirmação e explique a diferença entre controle logicamente centralizado e encaminhamento distribuído.
 
-26. Um grande datacenter utiliza centenas de servidores com intenso tráfego entre aplicações internas. Compare conceitualmente uma arquitetura de rede hierárquica tradicional com uma Fabric Leaf-Spine. Explique por que múltiplos caminhos, previsibilidade e facilidade de automação tornam uma Fabric adequada a ambientes cloud e discuta como SDN pode complementar essa arquitetura sem substituir necessariamente os switches físicos.
+25. Um grande datacenter utiliza centenas de servidores com intenso tráfego entre aplicações internas. Compare conceitualmente uma arquitetura de rede hierárquica tradicional com uma Fabric Leaf-Spine. Explique por que múltiplos caminhos, previsibilidade e facilidade de automação tornam uma Fabric adequada a ambientes cloud e discuta como SDN pode complementar essa arquitetura sem substituir necessariamente os switches físicos.
 
-27. Um roteador recebe duas rotas BGP para o mesmo prefixo. A primeira atravessa menos Autonomous Systems, mas a segunda foi configurada com uma política de preferência maior pela organização. Explique por que não se pode afirmar que o BGP sempre escolherá automaticamente o caminho com menor AS_PATH.
+26. Um roteador recebe duas rotas BGP para o mesmo prefixo. A primeira atravessa menos Autonomous Systems, mas a segunda foi configurada com uma política de preferência maior pela organização. Explique por que não se pode afirmar que o BGP sempre escolherá automaticamente o caminho com menor AS_PATH.
 
-28. Um roteador BGP recebe uma rota cujo atributo NEXT_HOP aponta para um endereço IP que não está diretamente conectado a ele. Explique por que essa rota ainda pode ser utilizada e qual processo o roteador precisa realizar para descobrir como alcançar esse próximo salto.
+27. Um roteador BGP recebe uma rota cujo atributo NEXT_HOP aponta para um endereço IP que não está diretamente conectado a ele. Explique por que essa rota ainda pode ser utilizada e qual processo o roteador precisa realizar para descobrir como alcançar esse próximo salto.
 
-29. Uma rede possui muitos roteadores participando de iBGP. Explique por que a exigência tradicional de Full Mesh se torna um problema à medida que a rede cresce e como um Route Reflector reduz a quantidade de sessões necessárias. Deixe claro que o Route Reflector não precisa necessariamente encaminhar o tráfego de dados entre os clientes.
+28. Uma rede possui muitos roteadores participando de iBGP. Explique por que a exigência tradicional de Full Mesh se torna um problema à medida que a rede cresce e como um Route Reflector reduz a quantidade de sessões necessárias. Deixe claro que o Route Reflector não precisa necessariamente encaminhar o tráfego de dados entre os clientes.
 
-30. Uma empresa possui uma Fabric IP funcionando corretamente entre seus switches Leaf e Spine. Mesmo assim, deseja que servidores conectados a diferentes Leafs possam participar da mesma rede lógica Layer 2. Explique por que apenas o Underlay IP não resolve esse requisito e como VXLAN, VTEP e VNI permitem criar essa rede lógica sobre a infraestrutura física.
+29. Uma empresa possui uma Fabric IP funcionando corretamente entre seus switches Leaf e Spine. Mesmo assim, deseja que servidores conectados a diferentes Leafs possam participar da mesma rede lógica Layer 2. Explique por que apenas o Underlay IP não resolve esse requisito e como VXLAN, VTEP e VNI permitem criar essa rede lógica sobre a infraestrutura física.
 
-31. Considere dois servidores pertencentes ao mesmo VNI, conectados a Leafs diferentes em uma Fabric VXLAN/EVPN. Explique, passo a passo e conceitualmente, como Underlay, VXLAN, VTEPs, MP-BGP e EVPN trabalham juntos para permitir a comunicação entre eles.
+30. Considere dois servidores pertencentes ao mesmo VNI, conectados a Leafs diferentes em uma Fabric VXLAN/EVPN. Explique, passo a passo e conceitualmente, como Underlay, VXLAN, VTEPs, MP-BGP e EVPN trabalham juntos para permitir a comunicação entre eles.
 
     Em sua resposta:
 
