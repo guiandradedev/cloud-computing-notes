@@ -2220,21 +2220,29 @@ Mapeamento de tag de vlan para um VNI. Todo cliente usa os mesmos nomes de VLAN 
     - a instituição deseja utilizar **serviços de inteligência artificial oferecidos por dois provedores públicos** diferentes.
 
     Explique como uma arquitetura pode combinar nuvem privada, nuvem pública, nuvem híbrida e multicloud nesse cenário. Mostre claramente por que híbrida e multicloud não são sinônimos, mesmo podendo existir simultaneamente.
->
+> A melhor abordagem seria uma nuvem híbrida e multicloud. Para garantir segurança, os dados são armazenados em nuvem privada e a as aplicações são replicadas na nuvem publica e na privada com link dedicado para reduzir latência, disponibilizadas através de proxy reverso com load balancer. Com relação aos serviços de IA, seria uma abordagem multicloud.
+> Apesar de terem conceitos semelhantes, multicloud foca em redução da dependência entre fornecedores, enquanto a nuvem hibrida foca em alternar diferentes tipos de ambientes para garantir segurança e escalabilidade em diferentes cenários.
 
 16.   Uma empresa migrou uma máquina virtual de seu datacenter para um serviço IaaS e passou a acreditar que não precisa mais atualizar o sistema operacional porque “agora o servidor está na nuvem”. Explique o erro dessa interpretação utilizando o conceito de responsabilidade compartilhada.
+> Ao escolher um serviço do tipo IaaS, a responsabilidade do provedor passar ser garantir segurança e disponibilidade a nível de hardware. Parte da responsabilidade do cliente manter o sistema atualizado para garantir segurança a nível de SO.
 
 17.   Compare IaaS, PaaS e SaaS do ponto de vista da responsabilidade do cliente. À medida que se passa de IaaS para PaaS e depois para SaaS, o que tende a acontecer com o controle e com a responsabilidade operacional do cliente? Explique utilizando exemplos de componentes da solução.
 
 18.   Uma aplicação executada em PaaS sofreu uma invasão porque o desenvolvedor criou uma API sem autenticação adequada. O cliente afirma que o provedor deveria assumir a responsabilidade porque a aplicação estava hospedada na infraestrutura dele. Analise essa afirmação utilizando o modelo de responsabilidade compartilhada.
+> O provedor é o responsável legal por lidar com a aplicação, enquanto o provedor é responsável por lidar com a infraestrutura de desenvolvimento. Como a autenticação é uma falha a nível de software, o cliente deve assumir as responsabilidades sobre a falha. 
 
 19. **Estudo de caso:** Uma empresa utiliza um sistema financeiro SaaS. O fornecedor mantém o software atualizado, realiza backups da plataforma e protege sua infraestrutura. Um funcionário da empresa cliente recebe privilégios administrativos excessivos e exporta informações financeiras confidenciais.
 Analise o incidente e explique:
     - quais controles estavam sob responsabilidade do provedor;
     - quais estavam sob responsabilidade do cliente;
     - por que utilizar SaaS não transfere toda a responsabilidade de segurança ao provedor.
+> - As responsabilidades do provedor são relativos a garantir segurança, disponibilidade e funcionamento da **aplicação**.
+> - Garantir privilégios corretos para cada subusuário na aplicação, além de usar a plataforma seguindo os termos do contrato.
+> - Tem alguns cenários que complicam, como por exemplo: 
+>   - Limitação na personalização caso o provedor seja responsável pela segurança total;
+>   - Não garantir que o usuário utilizou a aplicação de forma correta (o que aconteceu)
 
-20. **Estudo de caso:** Uma empresa possui a seguinte arquitetura:
+20.  **Estudo de caso:** Uma empresa possui a seguinte arquitetura:
     - máquinas virtuais em IaaS executando sistemas legados;
     - uma nova aplicação desenvolvida em PaaS;
     - e-mail corporativo fornecido como SaaS.
@@ -2246,13 +2254,16 @@ Analise o incidente e explique:
     3. uma conta administrativa do serviço de e-mail utiliza senha fraca e não possui controles adicionais de acesso.
 
     Para cada problema, identifique quem possui a responsabilidade principal — cliente ou provedor — e explique por que a divisão de responsabilidades muda entre os três casos. Ao final, explique por que a frase “quanto mais gerenciado é o serviço, menos responsabilidade o cliente possui” pode ser útil, mas também perigosa se interpretada de forma absoluta.
-> [...]
+> 1 - A responsabilidade cabe ao cliente, que ao optar por um IaaS, tem como responsabilidade gerenciar o SO;
+> 2 - Responsabilidade do cliente, visto que é uma falha da aplicação ter permissões excessivas no acesso ao banco de dados;
+> 3 - Responsabilidade do cliente, uma vez que tem senha fraca e sem controle de acesso.
+> 
 
-21.  Duas empresas utilizam a mesma quantidade de máquinas virtuais em cloud. A empresa A cria e administra os recursos manualmente, sem políticas comuns. A empresa B possui processos padronizados, governança e monitoramento do ambiente. Explique por que a quantidade de recursos em cloud não é suficiente para determinar a maturidade das duas organizações.
+1.   Duas empresas utilizam a mesma quantidade de máquinas virtuais em cloud. A empresa A cria e administra os recursos manualmente, sem políticas comuns. A empresa B possui processos padronizados, governança e monitoramento do ambiente. Explique por que a quantidade de recursos em cloud não é suficiente para determinar a maturidade das duas organizações.
 
-22.  Uma empresa possui diversos departamentos utilizando serviços de nuvem de forma independente. Alguns utilizam IaaS, outros SaaS e alguns criaram ambientes de desenvolvimento sem conhecimento da área central de TI. Explique quais características desse cenário indicam um estágio inicial de maturidade e quais mudanças seriam necessárias para que a organização avançasse para um uso mais repetível e coordenado.
+2.   Uma empresa possui diversos departamentos utilizando serviços de nuvem de forma independente. Alguns utilizam IaaS, outros SaaS e alguns criaram ambientes de desenvolvimento sem conhecimento da área central de TI. Explique quais características desse cenário indicam um estágio inicial de maturidade e quais mudanças seriam necessárias para que a organização avançasse para um uso mais repetível e coordenado.
 
-23.  **Estudo de caso:** Uma empresa apresenta as seguintes características:
+3.   **Estudo de caso:** Uma empresa apresenta as seguintes características:
 
     - utiliza cloud em praticamente todos os seus sistemas;
     - possui políticas centralizadas de segurança e governança;
@@ -2262,7 +2273,7 @@ Analise o incidente e explique:
 
     Com base no CMM apresentado em aula, indique em que região da escala de maturidade essa organização se encontra e justifique sua análise. Em seguida, explique quais mudanças seriam esperadas para que ela avançasse para o próximo nível.
 
-24. **Estudo de caso:** Uma grande organização realizou uma avaliação CMM e encontrou o seguinte cenário:
+4.  **Estudo de caso:** Uma grande organização realizou uma avaliação CMM e encontrou o seguinte cenário:
 
     - **Tecnologia:** alto nível de automação, IaC e CI/CD;
     - **Segurança:** políticas bem definidas e monitoramento contínuo;
@@ -2357,6 +2368,7 @@ Analise o incidente e explique:
 19. Um novo Pod precisa ser criado no cluster. Explique, em termos conceituais, o papel do API Server, Scheduler e kubelet desde a declaração desse recurso até sua execução em um Worker Node. Não é necessário descrever comandos.
 
 20. Uma aplicação possui três Pods que podem ser destruídos e recriados, recebendo novos endereços IP. Ainda assim, os clientes internos precisam acessar a aplicação por um endereço estável. Explique qual problema o objeto Service resolve e por que acessar diretamente o IP de um Pod seria uma solução inadequada.
+> 
 
 21. Uma aplicação web em Kubernetes possui múltiplas réplicas e precisa:
 
